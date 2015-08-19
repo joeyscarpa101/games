@@ -1,0 +1,194 @@
+void setup(){
+size(400, 400);
+}
+float scene = 1;
+boolean stop = false;
+float ground;
+float level = 0;
+float x1 = 250;
+float px1 = 150;
+float py1 = -100;
+float x2 = 250;
+float score = 0;
+ // missle 1
+float px2 = 150;
+float py2 = -100;
+float px3 = 250;
+int py3 = -150;
+float bx1 = 50;
+float by1  = -100;   
+float d = 200; //Width of effect
+float x = 0;
+float obi = 6;
+
+ 
+void draw () { 
+
+//scene 1
+    if(scene == 1){
+ background(0, 0, 0);
+textSize(20);
+fill(141, 153, 141);
+text("Sapphire Web Software Studios \n           presents..." ,37, 50);
+   textSize(50);
+   fill(0, 255, 0);
+   text("Warzone I", 71, 147); 
+   textSize(30);
+   fill(random(0,255), random(0,255),random(0,255));
+   text("Play", 162, 243);
+
+// Button statements
+   if(mousePressed && mouseX >157 && mouseX < 157+90 && mouseY > 214 && mouseY < 254){
+          scene = 2; 
+       }
+
+}
+if(scene ==2){
+
+ 
+    if(keyCode == LEFT && keyPressed){
+        x1=x1-7;
+    } else if (keyCode == RIGHT && keyPressed ){
+        x1=x1+7;
+    } 
+    noStroke();
+    background(0, 245, 176);
+    textSize(40);
+    text(score, 350, 50);
+    fill(0, 255, 0);
+    rect(x1, 271, 100, 20);
+  fill(8, 112, 4);
+rect(0, 317, 400, 85);
+fill(255, 0, 0);
+    rect(px1, py1, 20, 100);
+    
+    if(py1>400){
+        background(0, 0, 0);
+        fill(255, 0, 0);
+      text("You Lose",161, 147);
+      textSize(20);
+      text("Play Again", 146, 260);
+  
+      if(mousePressed && mouseX >146&& mouseX < 146+124 && mouseY > 238 && mouseY < 288){
+          py1 = -100;
+          score = 0;
+      }
+    } 
+ 
+    if(score < 10){
+         py1+=3; 
+    } else {
+        py1 = 200;
+        rect(275, 335, 100, 50);
+        textSize(20);
+        fill(0, 0, 0);
+        text("Next", 300, 360);
+        if(mousePressed && mouseX >275&& mouseX < 375 && mouseY > 335 && mouseY < 385){
+            scene =3;
+        }
+    }
+  
+    if(py1> 171 && py1 < 272 && px1 > x1-20 && px1 < x1+120&& score < 10){
+    py1 = -100;
+    px1 = random(50, 350);
+    score+=1;
+    }
+
+
+
+
+
+
+ 
+}
+if(scene == 3){
+  if(keyCode == LEFT && keyPressed){
+        x2=x2-10;
+    } else if (keyCode == RIGHT && keyPressed ){
+        x2=x2+10;
+    } 
+    noStroke();
+    background(0, 49, 245);
+    textSize(40);
+    text(score, 350, 50);
+    fill(0, 255, 0);
+    rect(x2, 271, 100, 20);
+   fill(235, 209, 132);
+   rect(0, 300, 400, 100);
+   fill(255, 255, 255);
+   rect(125, 59, 150, 116);
+   rect(88, 100, 75, 75);
+   rect(244, 100, 75, 75);
+fill(255, 0, 0);
+ if(score < 35){
+         py2+=2;
+    py3+=3;
+     by1+=2;
+    bx1+= 0.5;
+    } else {
+        py1 = 200;
+        rect(275, 335, 100, 50);
+        textSize(60);
+        fill(255, 0, 0);
+        text("You Win", 57, 140);
+        textSize(20);
+        fill(0, 0, 0);
+        text("Next", 300, 360);
+        if(mousePressed && mouseX >275&& mouseX < 375 && mouseY > 335 && mouseY < 385){
+            scene =4;
+            fill(255, 0, 0);
+        }
+    }
+    rect(px2, py2, 20, 100);
+rect(px3, py3, 20, 100);
+    
+    fill(255, 0, 0);
+    rect(bx1, by1, 20, 100);
+   
+    if(py2> 171 && py2 < 272 && px2 > x2-20 && px2 < x2+120){
+    py2 = -100;
+    px2 = random(50, 350);
+    score++;
+    }
+     if(py3> 171 && py3 < 272 && px3 > x2-20 && px3 < x2+120){
+    py3 = -150;
+    px3 = random(50, 350);
+    score++;
+    }
+  if(by1> 171 && by1 < 272 && bx1 > x2-20 && bx1 < x2+120){
+bx1 = random(50, 250);
+ by1  = -100; 
+   score++;
+  }
+ 
+ 
+ 
+ 
+     
+    if(py2>400 || py3 > 400 || by1 > 400){
+        background(0, 0, 0);
+        fill(255, 0, 0);
+      text("You Lose",110, 147);
+      textSize(20);
+      text("Play Again", 146, 260);
+
+      if(mousePressed && mouseX >146&& mouseX < 146+124 && mouseY > 238 && mouseY < 288){
+          py2 = -100;
+          py3 = 10;
+          by1 = -50;
+          bx1 = 50;
+          score = 10;
+      }
+    }     
+}
+if(scene == 4){
+    background(0, 0, 0);
+    textSize(20);
+    fill(255, 0, 0);
+    text("To be continued...", 101, 80);
+}
+    
+
+
+
+};
